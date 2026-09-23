@@ -1005,4 +1005,4 @@ if __name__ == "__main__":
         f"{total_success + total_fail}"
     )
     print(f"Total successful pages: {total_success}")
-    print(f"Total failed pages: {total_fail}/n")
+    print(f"Total failed pages: {total_fail}")
