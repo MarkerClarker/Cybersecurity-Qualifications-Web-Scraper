@@ -65,6 +65,8 @@ Websites can also change their layout, which may affect the scraper.
 
 Please follow each website's rules when collecting information.
 
+*Note: This is stricly meant for use in understanding cybersecurity analyst positions. You are free to rework the code to whatever end, but the regular expressions are heavily catered towards its initial purpose, so good luck and godspeed!*
+
 ## Repository
 
 [View the project on GitHub](https://github.com/MarkerClarker/Cybersecurity-Qualifications-Web-Scraper)
