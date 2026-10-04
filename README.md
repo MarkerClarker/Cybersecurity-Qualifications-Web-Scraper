@@ -32,12 +32,6 @@ Open the project folder:
 cd Cybersecurity-Qualifications-Web-Scraper
 ```
 
-Install the required packages:
-
-```bash
-pip install -r requirements.txt
-```
-
 ## Running the Project
 
 Run the main Python file in the project folder:
