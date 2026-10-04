@@ -1,8 +1,9 @@
+"""A collection of regular expression patterns for identifying cybersecurity certifications and skills in text."""
 import re
 
 # certification dictionary
 certification_patterns: dict[str, str] = {
-    # CompTIA
+    # CompTIA certifications
     "CompTIA Security+": (
         r"(?<!\w)(?:comptia\s*)?security\+(?!\w)"
     ),

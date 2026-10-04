@@ -1,4 +1,4 @@
-"""Cybersecurity Job Qualifications and Skills Scraper (produces a CSV and a chart of the top certifications and skills)"""
+"""A series of functions useful in the Web Scraping aspect of this project."""
 
 #imports Python libraries
 import re
@@ -13,8 +13,9 @@ import requests
 from bs4 import BeautifulSoup
 from ddgs import DDGS
 from ddgs.exceptions import DDGSException
-from patterns import certification_patterns, extract_matching_terms, skill_patterns
 from requests.adapters import HTTPAdapter
+
+from patterns import certification_patterns, extract_matching_terms, skill_patterns
 
 #global variables for tracking success and failure counts
 total_success: int = 0
@@ -26,7 +27,7 @@ _counter_lock = threading.Lock()
 thread_local = threading.local()
 
 def get_worker_session() -> requests.Session:
-    """#Returns/and creates a requests.Session object for the current worker thread"""
+    """Returns/and creates a requests.Session object for the current worker thread"""
     if not hasattr(thread_local, "session"):
         thread_local.session = create_session()
 
@@ -34,10 +35,7 @@ def get_worker_session() -> requests.Session:
 
 #This creates a requests.Session object with a connection pool and custom headers to gain access to web pages
 def create_session() -> requests.Session:
-    """Creates a requests.Session object with a connection pool and custom headers to gain access to web pages. 4
-    Controls connection behavior: max_retries=0` means the adapter does not automatically retry. The program 
-    handles retries manually later. `pool_connections=16` allows the session to maintain connection pools. 
-    `pool_maxsize=16` allows up to 16 pooled connections for the adapter."""
+    """Creates a requests.Session object with a connection pool and custom headers to gain access to web pages."""
     adapter = HTTPAdapter(
         max_retries=0,
         pool_connections=16,
@@ -99,16 +97,17 @@ def links_from_search(
     results: list[dict[str, str]],
 ) -> list[str]:
     """Extracts unique links from the search results, filtering out blocked sites and duplicates, and returns a list of unique links."""
+    
     print("Collecting unique links...")
 
-    #list of blocked sites to avoid scraping websites that will 
-    # always block the script
+    #list of blocked sites to avoid scraping websites that will always block the script
     blocked_sites = {
         "linkedin.com",
         "indeed.com",
         "glassdoor.com",
         "ziprecruiter.com",
     }
+
     #creates a list of links and a set of seen links to avoid duplicates
     links: list[str] = []
     seen_links: set[str] = set()
@@ -124,8 +123,7 @@ def links_from_search(
         parsed_url = urlparse(href)
         domain = parsed_url.netloc.lower()
 
-        if domain.startswith("www."):
-            domain = domain[4:]
+        domain = domain.removeprefix("www.")
 
         is_blocked = any(
             domain == site or domain.endswith(f".{site}")
@@ -472,7 +470,7 @@ def qualifications_from_search(
             completed_links += 1
 
             try:
-                link, page_records, success = future.result()
+                _link, page_records, success = future.result()
 
                 if success:
                     with _counter_lock:
@@ -482,7 +480,7 @@ def qualifications_from_search(
                     with _counter_lock:
                         total_fail += 1
 
-            except Exception as error:
+            except requests.exceptions.RequestException:
                 with _counter_lock:
                     total_fail += 1
 

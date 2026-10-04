@@ -1,12 +1,11 @@
-"""Cybersecurity Job Qualifications and Skills Scraper (produces a CSV and a chart of the top certifications and skills)"""
+"""Main function of the Cybersecurity Job Qualifications and Skills Web Scraper (produces charts of the top certifications and skills sought by cybersecurity employers)"""
 
-#imports Python libraries
+#imports
 import time
 from pathlib import Path
 
-#the important stuff for web scraping, and HTML parsing, and charting
-import pandas as pd
-from bar_chart import create_horizontal_bar_chart
+#imported modules and functions from said modules
+from create_bar_chart import create_horizontal_bar_chart
 from web_searching import (
     count_terms_once_per_page,
     links_from_search,
@@ -16,14 +15,14 @@ from web_searching import (
     total_success,
 )
 
+#ensures that the code can only be executed when the script is run directly
 if __name__ == "__main__":
-    """# Main function, full of function calls to search the web, extract qualifications, count certifications and skills, and create CSV 
-    files and charts. The if __name__ == "__main__": block ensures that the code is only executed when the script is run directly."""
-
+    
+    # Define the folder where the program is located and where charts will be saved
     program_folder = Path(__file__).resolve().parent
 
     queries = [
-        # Cybersecurity Analyst
+    # Cybersecurity Analyst
     "Cybersecurity Analyst job qualifications",
     "Cybersecurity Analyst job technical skills",
     "Cybersecurity Analyst job education requirements",
@@ -68,13 +67,9 @@ if __name__ == "__main__":
     all_results: list[dict[str, str]] = []
 
     for query in queries:
-        query_results = search_the_web(
-            query,
-            max_results=100,
-        )
+        query_results = search_the_web(query,max_results=100)
 
         all_results.extend(query_results)
-
         time.sleep(0.2)
 
     links = links_from_search(all_results)
@@ -89,60 +84,13 @@ if __name__ == "__main__":
 
     fetch_elapsed = time.perf_counter() - fetch_start
 
-    #print the average time per link if there are any links, mainly for diagnostic purposes
-    if links:
-        print(
-            f"Average time per link: "
-            f"{fetch_elapsed / len(links):.2f} seconds"
-        )   
-
     print("\nExtracted records:")
     print(len(records))
 
-    certification_counts, skill_counts = (
-        count_terms_once_per_page(records)
-    )
+    certification_counts, skill_counts = (count_terms_once_per_page(records))
 
-    print("\nCertifications:")
-    for certification, count in certification_counts.most_common():
-        print(f"{certification}: {count}")
-    print("\nSkills and technologies:")
-    for skill, count in skill_counts.most_common():
-        print(f"{skill}: {count}")
-
-    # Create the certification CSV
-    certification_table = pd.DataFrame(
-        certification_counts.most_common(),
-        columns=["Certification", "Mentions"],
-    )
-
-    certification_table.insert(
-        0,
-        "Rank",
-        range(1, len(certification_table) + 1),
-    )
-
-    certification_table.to_csv(
-        program_folder / "top_20_certifications.csv",
-        index=False,
-    )
-
-    # Create the skills CSV
-    skill_table = pd.DataFrame(
-        skill_counts.most_common(),
-        columns=["Skill_or_Tool", "Mentions"],
-    )
-
-    skill_table.insert(
-        0,
-        "Rank",
-        range(1, len(skill_table) + 1),
-    )
-
-    skill_table.to_csv(
-        program_folder / "top_30_cybersecurity_skills_and_tools.csv",
-        index=False,
-    )
+    print()
+    print("Preparing charts...")
 
     # Create the charts
     create_horizontal_bar_chart(
@@ -154,6 +102,9 @@ if __name__ == "__main__":
         color="darkorange",
     )
 
+    print()
+    print(f"Top 20 Cybersecurity Certifications saved to: {program_folder / 'top_20_cybersecurity_certifications.png'}")
+
     create_horizontal_bar_chart(
         frequencies=skill_counts,
         title="Top 30 Cybersecurity Skills and Tools",
@@ -163,16 +114,10 @@ if __name__ == "__main__":
         color="steelblue",
     )
 
-    print("\nTop certifications:")
-    print(certification_table.to_string(index=False))
-
-    print("\nTop skills and tools:")
-    print(skill_table.to_string(index=False))
-
     print()
-    print(
-        f"Total pages attempted: "
-        f"{total_success + total_fail}"
-    )
+    print(f"Top 30 Cybersecurity Skills and Tools saved to: {program_folder / 'top_30_cybersecurity_skills_and_tools.png'}")
+    print("Charts have been created and saved.")
+    print()
+    print(f"Total pages attempted: {total_success + total_fail}")
     print(f"Total successful pages: {total_success}")
     print(f"Total failed pages: {total_fail}")

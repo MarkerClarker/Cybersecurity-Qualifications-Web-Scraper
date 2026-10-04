@@ -1,72 +1,70 @@
 Rank,Skill_or_Tool,Mentions
-1,Incident response,33
-2,SIEM,28
-3,Compliance,28
-4,Firewalls,27
-5,Penetration Testing,27
-6,Network security,26
-7,Cloud security,25
-8,Encryption,23
-9,Linux,20
-10,Problem Solving,19
-11,Windows,18
-12,AWS,18
-13,Azure,18
-14,Python,18
-15,Scripting,18
-16,Vulnerability Assessment,16
-17,Risk Management,15
-18,Splunk,14
-19,Attention to Detail,13
-20,VPNs,11
-21,Google Cloud,11
-22,PowerShell,11
-23,IAM,11
-24,Communication,10
-25,Vulnerability Management,10
-26,Application security,10
-27,IDS/IPS,9
-28,Threat Hunting,8
-29,Threat intelligence,8
-30,Wireshark,8
-31,Bash,8
-32,Cryptography,7
-33,Ethical Hacking,7
-34,Nmap,7
-35,Microsoft Sentinel,7
-36,Log Analysis,7
-37,QRadar,5
-38,Nessus,5
-39,Analytical Thinking,5
-40,EDR,4
-41,Qualys,4
-42,Threat Detection,4
-43,Malware Analysis,4
-44,Java,4
-45,Metasploit,4
-46,Kali Linux,4
-47,Burp Suite,4
-48,Elastic Security,4
-49,SQL,4
-50,JavaScript,3
+1,Incident response,32
+2,SIEM,27
+3,Cloud security,26
+4,Penetration Testing,26
+5,Compliance,25
+6,Firewalls,24
+7,Network security,24
+8,Encryption,20
+9,Python,19
+10,Azure,19
+11,AWS,19
+12,Linux,18
+13,Windows,16
+14,Scripting,16
+15,Problem Solving,16
+16,Risk Management,15
+17,Splunk,15
+18,Vulnerability Assessment,14
+19,Google Cloud,12
+20,IAM,12
+21,PowerShell,11
+22,Attention to Detail,10
+23,VPNs,9
+24,Vulnerability Management,9
+25,Log Analysis,8
+26,Threat intelligence,8
+27,Application security,8
+28,Microsoft Sentinel,7
+29,Threat Hunting,7
+30,Wireshark,7
+31,Bash,7
+32,QRadar,6
+33,Nessus,6
+34,Ethical Hacking,6
+35,Cryptography,6
+36,Nmap,6
+37,IDS/IPS,6
+38,Communication,6
+39,Threat Detection,5
+40,Analytical Thinking,5
+41,SQL,4
+42,Qualys,4
+43,Java,4
+44,Kali Linux,4
+45,Elastic Security,4
+46,EDR,3
+47,Malware Analysis,3
+48,JavaScript,3
+49,Burp Suite,3
+50,Metasploit,3
 51,Ruby,3
 52,DNS,2
-53,TCP/IP,2
-54,SOAR,2
-55,ArcSight,2
-56,Teamwork,2
-57,Digital Forensics,2
-58,tcpdump,2
-59,macOS,2
-60,Active Directory,2
-61,API security,2
-62,Routing,2
-63,Detection Engineering,1
-64,Critical Thinking,1
-65,Suricata,1
-66,Zeek,1
-67,PHP,1
-68,Perl,1
-69,Reverse Engineering,1
-70,Switching,1
-71,Virtualization,1
+53,SOAR,2
+54,ArcSight,2
+55,Teamwork,2
+56,tcpdump,2
+57,Active Directory,2
+58,API security,2
+59,Routing,2
+60,TCP/IP,1
+61,PHP,1
+62,Detection Engineering,1
+63,Zeek,1
+64,Suricata,1
+65,macOS,1
+66,Perl,1
+67,Switching,1
+68,Digital Forensics,1
+69,Virtualization,1
