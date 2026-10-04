@@ -8,7 +8,7 @@ The results can help show which cybersecurity qualifications are most commonly m
 
 - Collects cybersecurity job-posting information
 - Looks for common certifications and skills
-- Counts how often qualifications appear
+- Counts how often certain qualifications appear
 - Creates charts to display the results
 
 ## Tools Used
@@ -44,12 +44,11 @@ Replace `your_file_name.py` with the name of the project's Python file.
 
 ## Results
 
-The project may create:
+The project creates:
 
 - Lists of common certifications
 - Lists of common cybersecurity skills
-- Tables of results
-- Charts showing qualification trends
+- Charts showing industry trends regarding the above
 
 ## Important Notes
 
